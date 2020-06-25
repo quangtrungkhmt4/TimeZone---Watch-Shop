@@ -18,7 +18,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item" href="<c:url value="/admin/product/create"/>">Create product</a>
-            <a class="dropdown-item" href="#">List product</a>
+            <a class="dropdown-item" href="<c:url value="/admin/product/list?page=1&limit=10"/>">List product</a>
         </div>
     </li>
 

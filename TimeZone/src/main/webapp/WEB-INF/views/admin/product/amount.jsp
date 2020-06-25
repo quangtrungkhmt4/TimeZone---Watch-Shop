@@ -26,7 +26,7 @@
         <form action="<c:url value='/admin/product/amount'/>" method="post" id="submitForm"
               enctype="multipart/form-data">
             <input type="hidden" name="id" value="${model.id}">
-            <input type="hidden" name="idsize" value="${sizecolor!=null?sizecolor.id:null}">
+            <input type="hidden" name="idsize" value="${amounts!=null?amounts.id:null}">
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-6">
@@ -51,17 +51,9 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <div class="form-label-group">
-                            <input type="color" id="color" class="form-control" style="height: 50px;"
-                                   required="required" autofocus="autofocus" name="color"
-                                   value="${sizecolor != null ? sizecolor.color : '#ffffff'}"/>
-                            <label for="color">Color</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-label-group">
                             <input type="number" id="amount" class="form-control" placeholder="Amount"
                                    required="required" autofocus="autofocus" name="amount"
-                                   value="${sizecolor != null ? sizecolor.count : 0}"/>
+                                   value="${amounts != null ? amounts.count : 0}"/>
                             <label for="amount">Amount</label>
                         </div>
                     </div>
@@ -71,55 +63,6 @@
             <button type="submit" class="btn btn-primary btn-block">Update</button>
             <%--            <a class="btn btn-primary btn-block" href="login.html">Create</a>--%>
         </form>
-
-        <table class="table table-bordered" width="100%" cellspacing="0" style="margin-top: 30px;">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Color</th>
-                <th>Amount</th>
-                <th>Is Active</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${amounts}" var="item">
-                <tr>
-                    <td>${item.id}</td>
-                    <td>${item.product.title}</td>
-                    <td align="center"><input readonly type="color"
-                                              value="${item.color}"></td>
-                    <td>${item.count}</td>
-                    <td align="center">
-                        <c:if test="${item.status == UserStatus.ACTIVE_STATUS}">
-                            <label>
-                                <input type="checkbox" checked readonly onclick="return false">
-                            </label>
-                        </c:if>
-                        <c:if test="${item.status == UserStatus.INACTIVE_STATUS}">
-                            <label>
-                                <input type="checkbox" readonly onclick="return false">
-                            </label>
-                        </c:if>
-                    </td>
-                    <td align="center">
-                        <button onclick="edit(${item.id})" class="btn btn-success btn-sm rounded-0"
-                                type="button" data-toggle="tooltip"
-                                data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                    </td>
-                    <td align="center">
-                        <c:if test="${item.status != UserStatus.INACTIVE_STATUS}">
-                            <button onclick="confirmRemove(${item.id})" class="btn btn-danger btn-sm rounded-0"
-                                    type="button" data-toggle="tooltip"
-                                    data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                        </c:if>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
     </div>
 
 

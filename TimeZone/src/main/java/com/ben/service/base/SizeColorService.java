@@ -6,6 +6,6 @@ import com.ben.model.SizeColorModel;
 import java.util.List;
 
 public interface SizeColorService extends Service<SizeColorModel> {
-    List<SizeColorModel> getByProduct(ProductModel model);
+    SizeColorModel getByProduct(ProductModel model);
     SizeColorModel getById(Long id);
 }

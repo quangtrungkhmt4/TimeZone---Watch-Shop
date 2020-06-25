@@ -7,8 +7,6 @@ import com.ben.service.base.SizeColorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class SizeColorServiceImpl implements SizeColorService {
 
@@ -16,8 +14,8 @@ public class SizeColorServiceImpl implements SizeColorService {
     private SizeColorRepository sizeColorRepository;
 
     @Override
-    public List<SizeColorModel> getByProduct(ProductModel model) {
-        return sizeColorRepository.findAllByProduct(model);
+    public SizeColorModel getByProduct(ProductModel model) {
+        return sizeColorRepository.findSizeColorModelByProduct(model);
     }
 
     @Override

@@ -161,14 +161,10 @@ public class ProductController {
     public ModelAndView loadSettingAmountPage(@RequestParam("id") long id
             , @RequestParam(value = "idsize", required = false) Long idSize) {
         ProductModel model = productService.getById(id);
-        List<SizeColorModel> sizeColorModels = sizeColorService.getByProduct(model);
         ModelAndView modelAndView = new ModelAndView("admin/product/amount");
+        SizeColorModel sizeColorModel = sizeColorService.getByProduct(model);
+        modelAndView.addObject("amounts", sizeColorModel);
         modelAndView.addObject("model", model);
-        modelAndView.addObject("amounts", sizeColorModels);
-        if (idSize != null){
-            SizeColorModel sizeColor = sizeColorService.getById(idSize);
-            modelAndView.addObject("sizecolor", sizeColor);
-        }
         return modelAndView;
     }
 
@@ -176,23 +172,20 @@ public class ProductController {
     public ModelAndView settingAmountPage(HttpServletRequest request) {
         String idSize = request.getParameter("idsize");
         long id = new Long(request.getParameter("id"));
-        String color = request.getParameter("color");
         int amount = new Integer(request.getParameter("amount"));
         int status = new Integer(request.getParameter("status"));
         ProductModel model = productService.getById(id);
         SizeColorModel sizeColor = new SizeColorModel();
-        sizeColor.setColor(color);
         sizeColor.setCount(amount);
         sizeColor.setProduct(model);
         sizeColor.setStatus(status);
         if (idSize != null && !idSize.equals("")){
             sizeColor.setId(new Long(idSize));
         }
-        sizeColorService.updateEntity(sizeColor);
-        List<SizeColorModel> sizeColorModels = sizeColorService.getByProduct(model);
+        SizeColorModel sizeColorModel = sizeColorService.updateEntity(sizeColor);
         ModelAndView modelAndView = new ModelAndView("admin/product/amount");
         modelAndView.addObject("model", model);
-        modelAndView.addObject("amounts", sizeColorModels);
+        modelAndView.addObject("amounts", sizeColorModel);
         return modelAndView;
     }
 }
