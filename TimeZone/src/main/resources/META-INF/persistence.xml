@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="persistence-data">
+        <class>com.ben.model.RoleModel</class>
+        <class>com.ben.model.UserModel</class>
+        <class>com.ben.model.ProductModel</class>
+        <class>com.ben.model.ImageModel</class>
+        <class>com.ben.model.NotiModel</class>
+        <class>com.ben.model.BillLogModel</class>
+        <class>com.ben.model.SellLogModel</class>
+        <class>com.ben.model.SizeColorModel</class>
+    </persistence-unit>
+</persistence>
